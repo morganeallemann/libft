@@ -14,26 +14,34 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	i;
 	size_t	j;
+	size_t	i;
 	size_t	count;
 
-	i = 0;
 	j = 0;
+	i = 0;
 	while (dst[i] != '\0')
 		i++;
 	count = i;
-	if (dstsize > 0)
+	if (dstsize <= count)
+		return (dstsize + count);
+	while (count + 1 < dstsize && src[j] != '\0')
 	{
-		while (j < dstsize && src[j] != '\0')
-		{
-			dst[i] = src[j];
-			i++;
-			j++;
-		}
-		dst[i] = '\0';
+		dst[count] = src[j];
+		count++;
+		j++;
 	}
-	while (src[j] !='\0')
+	dst[count] = '\0';
+	while (src[j] != '\0')
 		j++;
 	return (j + count);
 }
+/*
+int main()
+{
+        char x[] = "Hello";
+        char y[] = "Salut";
+        printf("%zu\n", ft_strlcat(x, y, 4));
+        return(0);
+}
+*/
