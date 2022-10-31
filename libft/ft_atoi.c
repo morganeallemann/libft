@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malleman <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 10:38:10 by malleman          #+#    #+#             */
-/*   Updated: 2022/10/31 11:15:23 by malleman         ###   ########.fr       */
+/*   Created: 2022/10/31 14:33:32 by malleman          #+#    #+#             */
+/*   Updated: 2022/10/31 15:24:23 by malleman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include"libft.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_atoi(const char *str)
 {
+	long	resultat;
 	int		i;
-	char	*str;
+	int		a;
 
+	resultat = 0;
 	i = 0;
-	str = (char *)s;
-	while (str[i] != 0)
+	a = 1;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[i] == (unsigned char)c)
-			return (&str[i]);
+		if (str[i] == '-')
+			a = -1;
+		i++;
+	}		
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		resultat = (resultat * 10) + (str[i] - '0');
 		i++;
 	}
-	if ((unsigned char)c == '\0')
-		return (&str[i]);
-	return (NULL);
+	return (resultat * a);
 }

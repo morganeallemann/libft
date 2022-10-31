@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malleman <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 10:38:10 by malleman          #+#    #+#             */
-/*   Updated: 2022/10/31 11:15:23 by malleman         ###   ########.fr       */
+/*   Created: 2022/10/31 13:49:26 by malleman          #+#    #+#             */
+/*   Updated: 2022/10/31 14:32:38 by malleman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include"libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int		i;
-	char	*str;
+	size_t	i;
+	size_t	a;
+	char	*str1;
+	char	*to_find;
 
 	i = 0;
-	str = (char *)s;
-	while (str[i] != 0)
+	str1 = (char *)haystack;
+	to_find = (char *)needle;
+	if (to_find[0] == '\0')
+		return (str1);
+	while (str1[i] != '\0' && i < len)
 	{
-		if (str[i] == (unsigned char)c)
-			return (&str[i]);
+		a = 0;
+		while (i + a < len && (str1[i + a] == to_find[a]))
+		{
+			if (to_find[a + 1] == '\0')
+				return (&str1[i]);
+			a++;
+		}
 		i++;
 	}
-	if ((unsigned char)c == '\0')
-		return (&str[i]);
 	return (NULL);
 }
