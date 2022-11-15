@@ -1,10 +1,23 @@
-t_list *ft_lstlast(t_list *lst)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malleman <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/09 15:07:17 by malleman          #+#    #+#             */
+/*   Updated: 2022/11/09 15:17:02 by malleman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include"libft.h"
+
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (!lst->next)
-		return (lst);
-	while (lst)
+	if (!lst)
+		return (NULL);
+	while (lst->next)
 	{
-		lst->next = lst;
+		lst = lst->next;
 	}
-	return (lst)
+	return (lst);
 }

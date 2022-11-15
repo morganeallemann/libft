@@ -1,41 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malleman <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/04 14:10:00 by malleman          #+#    #+#             */
+/*   Updated: 2022/11/04 15:43:09 by malleman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"libft.h"
 
-int	ft_find_set(char c, char const s*)
-{
-	int i;
-
-	i = 0;
-	while (s[i]))
-	{
-		if (c == s[i])
-			return(1);
-		i++;
-	}
-}
-	
-char	*ft_strtrim(char const *s1, char const *set)
+static int	ft_find_set(char c, char const *s)
 {
 	int	i;
-	int	j;
-	int	len_s1;
-	int	len_strim;
+
+	i = 0;
+	while (s[i])
+	{
+		if (c == s[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	int		i;
+	int		j;
+	int		x;
 	char	*strim;
 
-	if (s1 == NULL)
-		return (NULL);
-	len_s1 = ft_strlen(s1);
+	x = 0;
 	i = 0;
-	j = len_s1;
-	while (ft_find_set(s1[i], set))
+	j = ft_strlen(s1);
+	if (s1 == NULL || set == NULL)
+		return (NULL);
+	while (s1[i] && ft_find_set(s1[i], set))
 		i++;
-	while (ft_find_set(s1[j], set || j > 0))
+	while (j > i && (ft_find_set(s1[j - 1], set)))
 		j--;
-	len_strim = (len_s1 - j) - (len_s1 - i) + 2;
-	if (len_strim < 0)
-		len_strim = 1;
-	strim = malloc(sizeof(char *) * len_strim);
+	strim = (char *)malloc(sizeof(char) * (j - i) + 1);
 	if (strim == NULL)
 		return (NULL);
-	ft_strlcpy(strim, &s1[i], len_strim);
+	while (i < j)
+	{
+		strim[x] = s1[i];
+		i++;
+		x++;
+	}
+	strim[x] = '\0';
 	return (strim);
 }
