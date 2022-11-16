@@ -6,13 +6,14 @@
 #    By: malleman <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 14:45:26 by malleman          #+#    #+#              #
-#    Updated: 2022/11/15 14:48:52 by malleman         ###   ########.fr        #
+#    Updated: 2022/11/16 17:08:28 by malleman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = basic_function.c
+SRCS = basic_function.c ft_printf.c ptr_hexa.c convertion.c nb_hexa.c \
+	  unsigned.c 
 
 OBJS = ${SRCS:.c=.o}
 

@@ -6,13 +6,14 @@
 /*   By: malleman <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:09:34 by malleman          #+#    #+#             */
-/*   Updated: 2022/11/15 15:55:13 by malleman         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:36:17 by malleman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdio.h>
 #include<stdarg.h>
 #include"ft_printf.h"
+#include<stdlib.h>
 
 int	ft_putchar_i(int c)
 {
@@ -41,4 +42,20 @@ int	ft_putstr(char *s)
 		i++;
 	}
 	return (i);
+}
+
+int	ft_putnbr_i(int nb)
+{
+	int 	len;
+	char	*number;
+
+	number = ft_itoa(nb);
+	len = ft_putstr(number);
+	free(number);
+	return (len);
+}
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
 }
