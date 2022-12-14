@@ -1,9 +1,13 @@
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_Hi
-#ifndef BUFFER_SZE
+
+#ifndef BUFFER_SIZE
 # define BUFFER_SIZE 42
+#endif
+
+#ifndef GET_NExT_LINE_H
+# define GET_NEXT_LINE_H
 # include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 /*
 fonctions créée pour ce projet. 

@@ -1,3 +1,8 @@
+#include "get_next_line.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+
 char *line_after_return(char *stash)
 {
 	char	*new_line;
@@ -6,9 +11,11 @@ char *line_after_return(char *stash)
 
 	i = 0;
 	j = 0;
+	if (!stash)
+		return (NULL);
 	while (stash[i] != '\0' && stash[i] != '\n')
 		i++;
-	new_line = malloc(sizeof(char *) - i + 1);
+	new_line = malloc(sizeof(char *) * (ft_strlen(stash) - i + 1));
 	if (!new_line)
 		return (NULL);
 	i += 1;
@@ -30,17 +37,24 @@ char *line_with_return(char *stash)
 	int	i;
 
 	len = 0;
+	i = 0;
+	if (!stash)
+		return (NULL);
 	while (stash[len] != '\0' && stash[len] != '\n')
 		len++;
 	final_line = malloc(sizeof(char *) * len + 1);
-	while (stash[i] != '\0')
+	if (!final_line)
+		return (NULL);
+	while (stash[i] != '\0' && stash[i] != '\n')
 	{
-		if (final_line[i] == '\n')
+		if (stash[i] == '\n')
+		{	
+			i++;
 			break;
+		}
 		final_line[i] = stash[i];
 		i++;
 	}
-	i += 1;
 	final_line[i] = '\0';
 	return (final_line);
 }
@@ -50,11 +64,11 @@ char *read_the_line(int fd, char* stash)
 	char	*buff;
 	int	nb_bytes;
 
-	buff = malloc(sizeof((char *) * (BUFFER_SIZE + 1)));
+	buff = malloc(sizeof(char *) * (BUFFER_SIZE + 1));
 	if (!buff)
 		return (NULL);
 	nb_bytes = 1;
-	while (nb_bytes > 0 && !strchr(save, '\n'))
+	while (nb_bytes > 0 && !ft_strchr(stash, '\n'))
 	{
 		nb_bytes = read(fd, buff, BUFFER_SIZE);
 		if (nb_bytes < 0)
@@ -74,7 +88,7 @@ char *get_next_line(int fd)
 	static char	*stash;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	stash = read_the_line(fd, stash);
 	if (!stash)
