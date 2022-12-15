@@ -8,6 +8,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 /*
 fonctions créée pour ce projet. 
@@ -27,8 +31,8 @@ char *get_next_line(int fd);
 /*
 fonction reprise de la libft.
 */
-size_t  ft_strlen(const char *s);
-char    *ft_strchr(const char *s, int c);
-char    *ft_strjoin(const char *s1, const char *s2);
+size_t	ft_strlen(char *s);
+char    *ft_strchr(char *s, int c);
+char    *ft_strjoin(char *s1, char *s2);
 
 #endif
