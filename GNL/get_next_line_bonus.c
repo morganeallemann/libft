@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malleman <malleman@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 16:25:43 by malleman          #+#    #+#             */
-/*   Updated: 2022/12/20 16:25:46 by malleman         ###   ########.fr       */
+/*   Created: 2022/12/20 16:26:20 by malleman          #+#    #+#             */
+/*   Updated: 2022/12/20 16:43:49 by malleman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*line_after_return(char *stash)
 {
@@ -96,16 +96,16 @@ char	*read_the_line(int fd, char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[MAX_FD];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	stash = read_the_line(fd, stash);
-	if (!stash)
+	stash[fd] = read_the_line(fd, stash[fd]);
+	if (!stash[fd])
 		return (NULL);
-	line = line_with_return(stash);
-	stash = line_after_return(stash);
+	line = line_with_return(stash[fd]);
+	stash[fd] = line_after_return(stash[fd]);
 	return (line);
 }
 /*

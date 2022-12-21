@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malleman <malleman@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 16:16:58 by malleman          #+#    #+#             */
-/*   Updated: 2022/12/20 16:40:33 by malleman         ###   ########.fr       */
+/*   Created: 2022/12/20 16:26:52 by malleman          #+#    #+#             */
+/*   Updated: 2022/12/20 16:38:49 by malleman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *s)
 {
